@@ -553,9 +553,9 @@ if ($GLOBALS['patient_id_category_name']) {
 <table cellspacing='0' cellpadding='0' border='0'>
  <tr>
   <td class="small" colspan='4'>
-<a href="../history/history.php" onclick='top.restoreSession()'>
+<a href="#" onclick="top.window.parent.left_nav.loadFrame2('pel1','RBot','../interface/patient_file/history/history.php')">
 <?php echo htmlspecialchars(xl('History'),ENT_NOQUOTES); ?></a>
-|
+
 <?php //note that we have temporarily removed report screen from the modal view ?>
 <a href="../report/patient_report.php" onclick='top.restoreSession()'>
 <?php echo htmlspecialchars(xl('Report'),ENT_NOQUOTES); ?></a>
@@ -940,13 +940,13 @@ $linkMethod = "html";
 $bodyClass = "notab";
 $widgetAuth = true;
 $fixedWidth = true;
-expand_collapse_widget($widgetTitle, $widgetLabel, $widgetButtonLabel,
-  $widgetButtonLink, $widgetButtonClass, $linkMethod, $bodyClass,
-  $widgetAuth, $fixedWidth);
+// expand_collapse_widget($widgetTitle, $widgetLabel, $widgetButtonLabel,
+//   $widgetButtonLink, $widgetButtonClass, $linkMethod, $bodyClass,
+//   $widgetAuth, $fixedWidth);
 ?>
                     <br/>
-                    <div style='margin-left:10px' class='text'><img src='../../pic/ajax-loader.gif'/></div><br/>
-                </div>
+<!--                     <div style='margin-left:10px' class='text'><img src='../../pic/ajax-loader.gif'/></div><br/>
+                </div> -->
      </td>
     </tr>		
 
@@ -1064,6 +1064,7 @@ expand_collapse_widget($widgetTitle, $widgetLabel, $widgetButtonLabel,
 
 <br />
 </div>
+		<div id='stats_div'>
 <div>
  <?php
     // Advance Directives
@@ -1325,7 +1326,6 @@ expand_collapse_widget($widgetTitle, $widgetLabel, $widgetButtonLabel,
 			?>
 		</div>
 
-		<div id='stats_div'>
             <br/>
             <div style='margin-left:10px' class='text'><img src='../../pic/ajax-loader.gif'/></div><br/>
         </div>
