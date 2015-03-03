@@ -1,3 +1,5 @@
 .buildpath
 .project
 .settings
+sites/default/sqlconf.php
+sites/default/documents

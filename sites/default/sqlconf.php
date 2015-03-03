@@ -6,7 +6,7 @@ $host	= 'localhost';
 $port	= '3306';
 $login	= 'openemr';
 $pass	= 'pzma';
-$dbase	= 'openemr';
+$dbase	= 'kardiagnosis';
 
 //Added ability to disable
 //utf8 encoding - bm 05-2009
