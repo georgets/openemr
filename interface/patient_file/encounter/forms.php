@@ -114,7 +114,6 @@ $hide=1;
 require_once("$incdir/patient_file/encounter/new_form.php");
 ?>
 <body class="body_top">
-
 <div id="encounter_forms">
 
 
