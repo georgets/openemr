@@ -21,9 +21,16 @@ $form_folder = "cardiology";
 R::setup('mysql:host=192.168.10.14;dbname=kardiagnosis', 'openemr','pzma'); //mysql
 
 function update_model_data_from_post($rec) {
+	$rec->pid=$_SESSION['pid'];
+	$rec->date=isset($_POST['date'])? $_POST['date'] : R::isoDate() ;
+	$rec->user='';
+	$rec->groupname='';
+	$rec->authorized='';
+	$rec->activity='1';
 	foreach ( $_POST as $field => $val ) {
 		if ( ! is_array ( $val )) {
-			if (strrpos($field,"cef_")==0){
+			$p=strrpos($field,"cef_");
+			if ($p===0){
 				$fieldname=substr($field, 4);
 				$rec[$fieldname]=$val;
 			}
@@ -34,7 +41,7 @@ function update_model_data_from_post($rec) {
 if ($encounter == "")
 	$encounter = date ( "Ymd" );
 
-if ($_GET ["mode"] == "new") {
+if ($_REQUEST["mode"] == "new") {
 	
 	/*
 	 * NOTE - for customization you can replace $_POST with your own array
@@ -44,7 +51,7 @@ if ($_GET ["mode"] == "new") {
 	 * $newid = formSubmit($table_name, $newrecord, $_GET["id"], $userauthorized);
 	 */
 	$rec = R::dispense ( $table_name );
- 	update_model_data_from_post ( $rec );
+   	update_model_data_from_post ( $rec );
 	$newid = R::store ( $rec );
 	
 	/* save the data into the form's own table */
@@ -52,12 +59,11 @@ if ($_GET ["mode"] == "new") {
 	
 	/* link the form to the encounter in the 'forms' table */
 	addForm ( $encounter, $form_name, $newid, $form_folder, $pid, $userauthorized );
-} elseif ($_GET ["mode"] == "update") {
+} elseif ($_REQUEST["mode"] == "update") {
 	/* update existing record */
 	// $success = formUpdate($table_name, $_POST, $_GET["id"], $userauthorized);
-	$rec = R::load ( $table_name, $_GET ["id"] );
-// 	update_model_data_from_post ( $rec );
-	$rec->name="george";
+	$rec = R::load ( $table_name, $_REQUEST["id"] );
+ 	update_model_data_from_post ( $rec );
 	R::store ( $rec );
 }
 

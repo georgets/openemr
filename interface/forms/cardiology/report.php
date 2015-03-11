@@ -1,11 +1,14 @@
 <?php
 include_once("../../globals.php");
 include_once($GLOBALS["srcdir"]."/api.inc");
+require '../../../library/rb.php';
 
 /** CHANGE THIS, the name of the function is significant and  **
  **              must be changed to match the folder name     **/
-function example_report( $pid, $encounter, $cols, $id) {
-    
+function cardiology_report( $pid, $encounter, $cols, $id) {
+	R::setup('mysql:host=192.168.10.14;dbname=kardiagnosis', 'openemr','pzma'); //mysql
+	$rec = R::load ( 'formcardiologyencounter', $id );
+	
     /** CHANGE THIS - name of the database table associated with this form **/
     $table_name = "formcardiologyencounter";
 
@@ -20,7 +23,7 @@ function example_report( $pid, $encounter, $cols, $id) {
             if ($key == "id" || $key == "pid" || $key == "user" || 
                 $key == "groupname" || $key == "authorized" || 
                 $key == "activity" || $key == "date" || 
-                $value == "" || $value == "0000-00-00 00:00:00" || 
+                $value == "" || 
                 $value == "n") 
             {
                 // skip certain fields and blank data

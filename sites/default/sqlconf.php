@@ -2,7 +2,7 @@
 //  OpenEMR
 //  MySQL Config
 
-$host	= 'localhost';
+$host	= '192.168.10.14';
 $port	= '3306';
 $login	= 'openemr';
 $pass	= 'pzma';
