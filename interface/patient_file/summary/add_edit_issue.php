@@ -258,6 +258,7 @@ if (!empty($irow['type'])) {
 <?php html_header_show();?>
 <title><?php echo $issue ? xlt('Edit') : xlt('Add New'); ?><?php echo " ".xlt('Issue'); ?></title>
 <link rel="stylesheet" href='<?php echo $css_header ?>' type='text/css'>
+<link rel="stylesheet" href="<?php echo $GLOBALS['webroot']; ?>/interface/themes/jquery.autocomplete.css" type="text/css">
 
 <style>
 
@@ -283,6 +284,15 @@ div.section {
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot']; ?>/library/textformat.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot']; ?>/library/dialog.js"></script>
 
+
+<script type="text/javascript" src="<?php echo $GLOBALS['webroot']; ?>/library/js/jquery-1.2.2.min.js"></script>
+
+<!-- <script type="text/javascript" src="<?php echo $GLOBALS['webroot']; ?>/library/js/jquery.bgiframe.min.js"></script>
+-->
+<script type="text/javascript" src="<?php echo $GLOBALS['webroot']; ?>/library/js/jquery.dimensions.pack.js"></script>
+ 
+<script type="text/javascript" src="<?php echo $GLOBALS['webroot']; ?>/library/js/jquery.autocomplete.pack.js"></script>
+ 
 <script language="JavaScript">
 
  var mypcc = '<?php echo $GLOBALS['phone_country_code'] ?>';
@@ -354,6 +364,7 @@ div.section {
 <?php } else { ?>
   document.getElementById('row_referredby'    ).style.display = (f.form_referredby.value) ? '' : comdisp;
 <?php } ?>
+
 <?php
   if ($ISSUE_TYPES['football_injury']) {
     // Generate more of these for football injury fields.
@@ -367,6 +378,7 @@ div.section {
 ?>
  }
 
+ 
  // If a clickoption title is selected, copy it to the title field.
  function set_text() {
   var f = document.forms[0];
@@ -474,6 +486,17 @@ function divclick(cb, divid) {
  return true;
 }
 
+$().ready(function() {
+    $("#form_title").autocomplete('<?php echo $GLOBALS['webroot']; ?>/library/ajax/prescription_drugname_lookup.php',
+                            {
+                            width: 200,
+                            scrollHeight: 100,
+                            selectFirst: true
+                            });
+    $("#form_title").focus();
+
+});
+
 </script>
 
 </head>
@@ -519,7 +542,7 @@ function divclick(cb, divid) {
  <tr>
   <td valign='top' id='title_diagnosis' nowrap><b><?php echo $GLOBALS['athletic_team'] ? xlt('Text Diagnosis') : xlt('Title'); ?>:</b></td>
   <td>
-   <input type='text' size='40' name='form_title' value='<?php echo attr($irow['title']) ?>' style='width:100%' />
+   <input type='text' size='40' name='form_title' id='form_title' value='<?php echo attr($irow['title']) ?>' style='width:100%' />
   </td>
  </tr>
 
