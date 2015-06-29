@@ -38,7 +38,7 @@ if (isset ( $_GET["id"] )) {
 <body class="body_top">
 <?php function chkbText($label,$id,$lwidth=4,$bwidth=6){
 $s = '
-  <label class="col-lg-'.$lwidth.' control-label" for="'.$id.'">'.$label.'</label>
+  <label class="col-lg-'.$lwidth.' control-label text-right" for="'.$id.'">'.$label.'</label>
   <div class="col-lg-'.$bwidth.'">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -54,7 +54,7 @@ return $s;
 
 function chkbTextGroup($label,$id,$associativelist,$tlwidth=2,$lwidth=4,$bwidth=6){
 	$s = '<div>
-<label class="col-lg-'.$tlwidth.' control-label" for="'.$id.'">'.$label.'</label>
+<label class="col-lg-'.$tlwidth.' control-label text-right" for="'.$id.'">'.$label.'</label>
 <div class="col-lg-'.($lwidth+$bwidth).'">';
 	$lwidth=floor($lwidth*12/($lwidth+$bwidth));
 	$bwidth=12-$lwidth-1;
