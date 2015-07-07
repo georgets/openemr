@@ -229,14 +229,15 @@ class C_Prescription extends Controller {
 	function multiprint_header(& $pdf, $p) {
 		$this->providerid = $p->provider->id;
 		//print header
-		$pdf->ezImage($GLOBALS['oer_config']['prescriptions']['logo'],'','50','','center','');
-		$pdf->ezColumnsStart(array('num'=>2, 'gap'=>10));
-		$res = sqlQuery("SELECT concat('<b>',f.name,'</b>\n',f.street,'\n',f.city,', ',f.state,' ',f.postal_code,'\nTel:',f.phone,if(f.fax != '',concat('\nFax: ',f.fax),'')) addr FROM users JOIN facility AS f ON f.name = users.facility where users.id ='" .
-			mysql_real_escape_string($p->provider->id) . "'");
-		$pdf->ezText($res['addr'],12);
-		$my_y = $pdf->y;
-		$pdf->ezNewPage();
-		$pdf->ezText('<b>' . $p->provider->get_name_display() . '</b>',12);
+ 		$pdf->ezImage('../interface/pic/kardiagnosis_header.png','','50','','center','');
+//		$pdf->ezImage($GLOBALS['oer_config']['prescriptions']['logo']);
+// 		$pdf->ezColumnsStart(array('num'=>2, 'gap'=>10));
+// 		$res = sqlQuery("SELECT concat('<b>',f.name,'</b>\n',f.street,'\n',f.city,', ',f.state,' ',f.postal_code,'\nTel:',f.phone,if(f.fax != '',concat('\nFax: ',f.fax),'')) addr FROM users JOIN facility AS f ON f.name = users.facility where users.id ='" .
+// 			mysql_real_escape_string($p->provider->id) . "'");
+// 		$pdf->ezText($res['addr'],12);
+// 		$my_y = $pdf->y;
+// 		$pdf->ezNewPage();
+// 		$pdf->ezText('<b>' . $p->provider->get_name_display() . '</b>',12);
     // A client had a bad experience with a patient misusing a DEA number, so
     // now the doctors write those in on printed prescriptions and only when
     // necessary.  If you need to change this back, then please make it a

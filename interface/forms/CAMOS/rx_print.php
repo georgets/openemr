@@ -145,7 +145,7 @@ function topHeaderRx() {
 }
 function bottomHeaderRx() {
     global $patient_name,$patient_address,$patient_city,$patient_state,$patient_zip,$patient_phone,$patient_dob;
-    print "<span class='mytagname'> " . xl('Name') . ":</span>\n";
+    print "<span class='mytagname'>" . xl('Name') . ":</span>\n";
     print "<span class='mydata'> $patient_name </span>\n";
     print "<span class='mytagname'> " . xl('Address') . ": </span>\n";
     print "<span class='mydata'> $patient_address, $patient_city, " .
