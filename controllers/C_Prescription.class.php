@@ -235,7 +235,7 @@ class C_Prescription extends Controller {
 // 		$res = sqlQuery("SELECT concat('<b>',f.name,'</b>\n',f.street,'\n',f.city,', ',f.state,' ',f.postal_code,'\nTel:',f.phone,if(f.fax != '',concat('\nFax: ',f.fax),'')) addr FROM users JOIN facility AS f ON f.name = users.facility where users.id ='" .
 // 			mysql_real_escape_string($p->provider->id) . "'");
 // 		$pdf->ezText($res['addr'],12);
-// 		$my_y = $pdf->y;
+ 		$my_y = $pdf->y;
 // 		$pdf->ezNewPage();
 // 		$pdf->ezText('<b>' . $p->provider->get_name_display() . '</b>',12);
     // A client had a bad experience with a patient misusing a DEA number, so
@@ -273,30 +273,33 @@ class C_Prescription extends Controller {
 		if ($my_y < $pdf->y){
 			$pdf->ezSetY($my_y);
 		}
-		$pdf->ezText('',10);
-		$pdf->setLineStyle(1);
-		$pdf->ezColumnsStart(array('num'=>2));
-		$pdf->line($pdf->ez['leftMargin'],$pdf->y,$pdf->ez['pageWidth']-$pdf->ez['rightMargin'],$pdf->y);
-		$pdf->ezText('<b>' . xl('Patient Name & Address') . '</b>',6);
-		$pdf->ezText($p->patient->get_name_display(),10);
-		$res = sqlQuery("SELECT  concat(street,'\n',city,', ',state,' ',postal_code,'\n',if(phone_home!='',phone_home,if(phone_cell!='',phone_cell,if(phone_biz!='',phone_biz,'')))) addr from patient_data where pid =". mysql_real_escape_string ($p->patient->id));
-		$pdf->ezText($res['addr']);
+// 		$pdf->ezText('',10);
+// 		$pdf->setLineStyle(1);
+// 		$pdf->ezColumnsStart(array('num'=>2));
+// 		$pdf->line($pdf->ez['leftMargin'],$pdf->y,$pdf->ez['pageWidth']-$pdf->ez['rightMargin'],$pdf->y);
+// 		$pdf->ezText('<b>' . xl('Patient Name & Address') . '</b>',6);
+		$pdf->ezSetY(459);
+		$pdf->ezText("                       ".$p->patient->get_name_display()
+				."                                                 ".date('d/m/Y'),10);
+// 		$res = sqlQuery("SELECT  concat(street,'\n',city,', ',state,' ',postal_code,'\n',if(phone_home!='',phone_home,if(phone_cell!='',phone_cell,if(phone_biz!='',phone_biz,'')))) addr from patient_data where pid =". mysql_real_escape_string ($p->patient->id));
+// 		$pdf->ezText($res['addr']);
 		$my_y = $pdf->y;
-		$pdf->ezNewPage();
-		$pdf->line($pdf->ez['leftMargin'],$pdf->y,$pdf->ez['pageWidth']-$pdf->ez['rightMargin'],$pdf->y);
-		$pdf->ezText('<b>' . xl('Date of Birth') . '</b>',6);
-		$pdf->ezText($p->patient->date_of_birth,10);
-		$pdf->ezText('');
-		$pdf->line($pdf->ez['leftMargin'],$pdf->y,$pdf->ez['pageWidth']-$pdf->ez['rightMargin'],$pdf->y);
-		$pdf->ezText('<b>' . xl('Medical Record #') . '</b>',6);
-		$pdf->ezText(str_pad($p->patient->get_pubpid(), 10, "0", STR_PAD_LEFT),10);
+		$pdf->ezSetY($my_y-20);
+// 		$pdf->ezNewPage();
+// 		$pdf->line($pdf->ez['leftMargin'],$pdf->y,$pdf->ez['pageWidth']-$pdf->ez['rightMargin'],$pdf->y);
+// 		$pdf->ezText('<b>' . xl('Date of Birth') . '</b>',6);
+// 		$pdf->ezText($p->patient->date_of_birth,10);
+// 		$pdf->ezText('');
+// 		$pdf->line($pdf->ez['leftMargin'],$pdf->y,$pdf->ez['pageWidth']-$pdf->ez['rightMargin'],$pdf->y);
+// 		$pdf->ezText('<b>' . xl('Medical Record #') . '</b>',6);
+// 		$pdf->ezText(str_pad($p->patient->get_pubpid(), 10, "0", STR_PAD_LEFT),10);
 		$pdf->ezColumnsStop();
 		if ($my_y < $pdf->y){
 			$pdf->ezSetY($my_y);
 		}
 		$pdf->ezText('');
 		$pdf->line($pdf->ez['leftMargin'],$pdf->y,$pdf->ez['pageWidth']-$pdf->ez['rightMargin'],$pdf->y);
-		$pdf->ezText('<b>' . xl('Prescriptions') . '</b>',6);
+		$pdf->ezText('<b>' . xl('Rp:') . '</b>',6);
 		$pdf->ezText('',10);
 	}
 
@@ -456,7 +459,7 @@ class C_Prescription extends Controller {
 				return;
 			}
 		}
-		$pdf->ezText("\n\n\n\n" . xl('Signature') . ":________________________________\n" . xl('Date') . ": " . date('Y-m-d'),12);
+// 		$pdf->ezText("\n\n\n\n" . xl('Signature') . ":________________________________\n" . xl('Date') . ": " . date('Y-m-d'),12);
 	}
 
         function multiprintcss_footer() {
@@ -476,7 +479,7 @@ class C_Prescription extends Controller {
         }
 
 	function get_prescription_body_text($p) {
-		$body = '<b>' . xl('Rx') . ': ' . $p->get_drug() . ' ' . $p->get_size() . ' ' . $p->get_unit_display();
+		$body = '<b>' . $p->get_drug() . ' ' . $p->get_size() . ' ' . $p->get_unit_display();
 		if ($p->get_form()) $body .= ' [' . $p->form_array[$p->get_form()] . "]";
 		$body .= "</b>     <i>" .
 			$p->substitute_array[$p->get_substitute()] . "</i>\n" .
@@ -574,7 +577,7 @@ class C_Prescription extends Controller {
 			}
 			if (++$on_this_page > 3 || $p->provider->id != $this->providerid) {
 				$this->multiprint_footer($pdf);
-				$pdf->ezNewPage();
+ 				$pdf->ezNewPage();
 				$this->multiprint_header($pdf, $p);
 				// $print_header = false;
 				$on_this_page = 1;

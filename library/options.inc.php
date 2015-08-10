@@ -1470,7 +1470,7 @@ function generate_display_field($frow, $currvalue) {
       if (1 || !empty($lrow['title'])){
       $s .= "<td style=\"border-bottom: solid 1px; border-color: lightgrey; \" class='bold' valign='top'>" . htmlspecialchars(xl_list_label($lrow['title']),ENT_NOQUOTES) . "&nbsp;</td>";
       }
-      $restype = $restype ? xl('Ναι') : xl('Όχι');  
+      $restype = $restype ? xl('Yes') : xl('No');  
       $s .= "<td style=\"border-bottom: solid 1px; border-color: lightgrey; \" class='text' valign='top'>" . htmlspecialchars($restype,ENT_NOQUOTES) . "</td>";
       $s .= "<td style=\"border-bottom: solid 1px; border-color: lightgrey; \" class='text' valign='top'>" . htmlspecialchars($resnote,ENT_NOQUOTES) . "</td>";
 //       $s .= htmlspecialchars($restype,ENT_NOQUOTES) . " ";
