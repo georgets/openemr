@@ -1453,22 +1453,35 @@ function generate_display_field($frow, $currvalue) {
     }
     $lres = sqlStatement("SELECT * FROM list_options " .
       "WHERE list_id = ? ORDER BY seq, title", array($list_id) );
-    $s .= "<table cellpadding='0' cellspacing='0'>";
+//     $s .= "<table cellpadding='0' cellspacing='0'>";
+    $some_content=false;
+    $first=true;
     while ($lrow = sqlFetchArray($lres)) {
+      if (! $first){
+      	$s .= '<tr><td><td><td><td>';
+      }
+      $first=false;
       $option_id = $lrow['option_id'];
       $restype = substr($avalue[$option_id], 0, 1);
       $resnote = substr($avalue[$option_id], 2);
       if (empty($restype) && empty($resnote)) continue;
-	
+      $some_content=$some_content || ($restype==1 || ! empty($resnote));
       // Added 5-09 by BM - Translate label if applicable	
-      $s .= "<tr><td class='bold' valign='top'>" . htmlspecialchars(xl_list_label($lrow['title']),ENT_NOQUOTES) . "&nbsp;</td>";
-	
+      if (! empty($lrow['title'])){
+//       if (1 || !empty($lrow['title'])){
+      $s .= "<td style=\"border-bottom: solid 1px; border-color: lightgrey; \" class='bold' valign='top'>" . htmlspecialchars(xl_list_label($lrow['title']),ENT_NOQUOTES) . "&nbsp;</td>";
+      }
       $restype = $restype ? xl('Yes') : xl('No');  
-      $s .= "<td class='text' valign='top'>" . htmlspecialchars($restype,ENT_NOQUOTES) . "</td></tr>";
-      $s .= "<td class='text' valign='top'>" . htmlspecialchars($resnote,ENT_NOQUOTES) . "</td></tr>";
-      $s .= "</tr>";
+      if ($some_content){
+	      $s .= "<td style=\"border-bottom: solid 1px; border-color: lightgrey; \" class='text' valign='top'>" . htmlspecialchars($restype,ENT_NOQUOTES) . "</td>";
+	      $s .= "<td style=\"border-bottom: solid 1px; border-color: lightgrey; \" class='text' valign='top'>" . htmlspecialchars($resnote,ENT_NOQUOTES) . "</td>";
+      }
+//       $s .= htmlspecialchars($restype,ENT_NOQUOTES) . " ";
+//       $s .= htmlspecialchars($resnote,ENT_NOQUOTES);
+//       $s .= "</tr>";
+      
     }
-    $s .= "</table>";
+//     $s .= "</table>";
   }
 
   // special case for history of lifestyle status; 3 radio buttons and a date text field:
@@ -1546,7 +1559,7 @@ function generate_display_field($frow, $currvalue) {
     $s = htmlspecialchars($urow['name'],ENT_NOQUOTES);
   }
 
-  return $s;
+  return ($some_content || ! isset($some_content) ? $s : "");
 }
 
 $CPR = 4; // cells per row of generic data
@@ -1631,7 +1644,7 @@ function display_layout_rows($formtype, $result1, $result2='') {
 	  disp_end_row();
 	  echo "<tr>";
 	  if ($group_name) {
-		echo "<td class='groupname'>";
+		echo "<td  class='groupname'>";
 		//echo "<td class='groupname' style='padding-right:5pt' valign='top'>";
 		//echo "<font color='#008800'>$group_name</font>";
 	
@@ -1647,38 +1660,48 @@ function display_layout_rows($formtype, $result1, $result2='') {
 	}
 
 	if ($item_count == 0 && $titlecols == 0) $titlecols = 1;
-
+	$title="";
 	// Handle starting of a new label cell.
 	if ($titlecols > 0) {
 	  disp_end_cell();
 	  //echo "<td class='label' colspan='$titlecols' valign='top'";
 	  $titlecols_esc = htmlspecialchars( $titlecols, ENT_QUOTES);
-	  echo "<td class='label' colspan='$titlecols_esc' ";
+	  $title.="<td style=\"border-bottom: solid 1px; border-color: lightgrey; \" class='label' colspan='$titlecols_esc' ";
 	  //if ($cell_count == 2) echo " style='padding-left:10pt'";
-	  echo ">";
+	  $title.=">";
 	  $cell_count += $titlecols;
 	}
 	++$item_count;
 
 	// Added 5-09 by BM - Translate label if applicable
-	if ($frow['title']) echo htmlspecialchars(xl_layout_label($frow['title']).":",ENT_NOQUOTES); else echo "&nbsp;";
-
+	
+ 	if ($frow['title']) $title.= htmlspecialchars(xl_layout_label($frow['title']).":",ENT_NOQUOTES); else $title.= "&nbsp;";
+    
 	// Handle starting of a new data cell.
-	if ($datacols > 0) {
+	if ($datacols > 0  && $data_type!=25) {
 	  disp_end_cell();
 	  //echo "<td class='text data' colspan='$datacols' valign='top'";
 	  $datacols_esc = htmlspecialchars( $datacols, ENT_QUOTES);      
-	  echo "<td class='text data' colspan='$datacols_esc'";
+	  $title.="<td class='text data' colspan='$datacols_esc'";
 	  //if ($cell_count > 0) echo " style='padding-left:5pt'";
-	  echo ">";
+	   $title.=">";
 	  $cell_count += $datacols;
 	}
 
 	++$item_count;
-	echo generate_display_field($frow, $currvalue);
+	
+	$s = generate_display_field($frow, $currvalue);
+	if ($data_type!=25){
+		echo $title;
+		echo $s;
+	}elseif (! empty($s) ){
+		echo $title;
+		echo $s;
+	}
     }
+//     echo "<td>X</td>";
   }
-
+  
   disp_end_group();
 }
 
@@ -1757,49 +1780,50 @@ function display_layout_tabs_data($formtype, $result1, $result2='') {
 					else {
 					  if (isset($result1[$field_id])) $currvalue = $result1[$field_id];
 					}
-
-					// Handle a data category (group) change.
-					if (strcmp($this_group, $last_group) != 0) {
-					  $group_name = substr($this_group, 1);
-					  // totally skip generating the employer category, if it's disabled.
-					  if ($group_name === 'Employer' && $GLOBALS['omit_employers']) continue;
-					  $last_group = $this_group;
-					}
-
-					// Handle starting of a new row.
-					if (($titlecols > 0 && $cell_count >= $CPR) || $cell_count == 0) {
-					  disp_end_row();
-					  echo "<tr>";
-					}
-
-					if ($item_count == 0 && $titlecols == 0) {
-						$titlecols = 1;
-					}
-
-					// Handle starting of a new label cell.
-					if ($titlecols > 0) {
-					  disp_end_cell();
-					  $titlecols_esc = htmlspecialchars( $titlecols, ENT_QUOTES);
-					  echo "<td class='label' colspan='$titlecols_esc' ";
-					  echo ">";
-					  $cell_count += $titlecols;
-					}
-					++$item_count;
-
-					// Added 5-09 by BM - Translate label if applicable
-					if ($group_fields['title']) echo htmlspecialchars(xl_layout_label($group_fields['title']).":",ENT_NOQUOTES); else echo "&nbsp;";
-
-					// Handle starting of a new data cell.
-					if ($datacols > 0) {
-					  disp_end_cell();
-					  $datacols_esc = htmlspecialchars( $datacols, ENT_QUOTES);
-					  echo "<td class='text data' colspan='$datacols_esc'";
-					  echo ">";
-					  $cell_count += $datacols;
-					}
-
-					++$item_count;
-					echo generate_display_field($group_fields, $currvalue);
+					
+                    $value=generate_display_field($group_fields, $currvalue);
+                    if(!empty($value)){
+						// Handle a data category (group) change.
+						if (strcmp($this_group, $last_group) != 0) {
+						  $group_name = substr($this_group, 1);
+						  // totally skip generating the employer category, if it's disabled.
+						  if ($group_name === 'Employer' && $GLOBALS['omit_employers']) continue;
+						  $last_group = $this_group;
+						}
+	
+						// Handle starting of a new row.
+						if (($titlecols > 0 && $cell_count >= $CPR) || $cell_count == 0) {
+						  disp_end_row();
+						  echo "<tr>";
+						}
+	
+						if ($item_count == 0 && $titlecols == 0) {
+							$titlecols = 1;
+						}
+	
+						// Handle starting of a new label cell.
+						if ($titlecols > 0) {
+						  disp_end_cell();
+						  $titlecols_esc = htmlspecialchars( $titlecols, ENT_QUOTES);
+						  echo "<td class='label' colspan='$titlecols_esc' >";
+						  $cell_count += $titlecols;
+						}
+						++$item_count;
+	
+						// Added 5-09 by BM - Translate label if applicable
+						if ($group_fields['title']) echo htmlspecialchars(xl_layout_label($group_fields['title']).":",ENT_NOQUOTES); else echo "&nbsp;";
+	
+						// Handle starting of a new data cell.
+						if ($datacols > 0) {
+						  disp_end_cell();
+						  $datacols_esc = htmlspecialchars( $datacols, ENT_QUOTES);
+						  echo "<td class='text data' colspan='$datacols_esc'>";
+						  $cell_count += $datacols;
+						}
+	
+						++$item_count;
+						echo $value;
+                    }
 				  }
 
         disp_end_row();
