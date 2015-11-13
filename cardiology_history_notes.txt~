@@ -1,0 +1,207 @@
+
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`, `codes`) VALUES ('lists', 'STEMI', 'STEMI', '306', '1', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('STEMI', 'Anterior', 'Anterior', '1', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('STEMI', 'Anteroseptal', 'Anteroseptal', '1', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('STEMI', 'AnterolateralExtensive', 'Anterolateral extensive', '1', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('STEMI', 'Inferior', 'Inferior', '1', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('STEMI', 'Inferolateral', 'Inferolateral', '1', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('STEMI', 'InferiorRV', 'Inferior with RV involvement', '1', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('STEMI', 'HighLateral', 'High Lateral', '1', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('STEMI', 'TruePosterior', 'True posterior', '1', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('STEMI', 'Unknown', 'Unknown', '1', '0', '0', '', '', '');
+
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`, `codes`) VALUES ('lists', 'plaque', 'plaque', '306', '1', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('plaque', 'LCCA', 'LCCA', '1', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('plaque', 'LICA', 'LICA', '2', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('plaque', 'LECA', 'LECA', '3', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('plaque', 'LBulb', 'LBulb', '4', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('plaque', 'RCCA', 'RCCA', '5', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('plaque', 'RICA', 'RICA', '6', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('plaque', 'RECA', 'RECA', '7', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('plaque', 'RBulb', 'RBulb', '8', '0', '0', '', '', '');
+
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`, `codes`) VALUES ('lists', 'stenperc', 'Stenosis Percentages', '306', '1', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('stenperc', 's0', '0%', '1', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('stenperc', 's1', '1-39%', '2', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('stenperc', 's40', '40-59%', '3', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('stenperc', 's60', '60-79%', '4', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('stenperc', 's80', '80-99%', '5', '0', '0', '', '', '');
+INSERT INTO `list_options` VALUES ('stenperc', 's100', '100%', '6', '0', '0', '', '', '');
+
+
+
+ALTER TABLE history_data ADD his_alcohol TEXT;
+ALTER TABLE history_data ADD his_dm TEXT;
+ALTER TABLE history_data ADD his_physicalinactivity TEXT;
+ALTER TABLE history_data ADD his_unhealthydiet TEXT;
+ALTER TABLE history_data ADD his_cholesterol TEXT;
+ALTER TABLE history_data ADD his_age TEXT;
+ALTER TABLE history_data ADD his_gender TEXT;
+ALTER TABLE history_data ADD his_familyhistory TEXT;
+
+ALTER TABLE history_data ADD his_ecg TEXT;
+ALTER TABLE history_data ADD his_ett TEXT;
+ALTER TABLE history_data ADD his_carotids TEXT;
+ALTER TABLE history_data ADD his_ctangio TEXT;
+ALTER TABLE history_data ADD his_angio TEXT;
+ALTER TABLE history_data ADD his_prev_other TEXT;
+
+
+INSERT INTO `layout_options` VALUES ('HIS','his_hypertention','1Modifiable Risk Factors','Hypertention',1,25,1,100,0,'blank',1,3,'','','',0);
+INSERT INTO `layout_options` VALUES ('HIS','his_dm','1Modifiable Risk Factors','DM',2,25,1,100,0,'blank',1,3,'','','',0);
+INSERT INTO `layout_options` VALUES ('HIS','his_physicalinactivity','1Modifiable Risk Factors','Physical Inactivity',3,25,1,100,0,'blank',1,3,'','','',0);
+INSERT INTO `layout_options` VALUES ('HIS','his_unhealthydiet','1Modifiable Risk Factors','Unhealthy Diet',4,25,1,100,0,'blank',1,3,'','','',0);
+INSERT INTO `layout_options` VALUES ('HIS','his_cholesterol','1Modifiable Risk Factors','Cholesterol',5,25,1,100,0,'blank',1,3,'','','',0);
+
+INSERT INTO `layout_options` VALUES ('HIS','his_age','2Non_modifiable Risk Factors','Age',6,25,1,100,0,'blank',1,3,'','','',0);
+INSERT INTO `layout_options` VALUES ('HIS','his_gender','2Non_modifiable Risk Factors','Gender',7,25,1,100,0,'blank',1,3,'','','',0);
+INSERT INTO `layout_options` VALUES ('HIS','his_familyhistory','2Non_modifiable Risk Factors','Family History',8,25,1,100,0,'blank',1,3,'','','',0);
+
+INSERT INTO `layout_options` VALUES ('HIS','his_ecg','3Previous Tests','ECG',1,25,1,100,0,'blank',1,3,'','','',0);
+INSERT INTO `layout_options` VALUES ('HIS','his_ett','3Previous Tests','ETT',2,25,1,100,0,'blank',1,3,'','','',0);
+INSERT INTO `layout_options` VALUES ('HIS','his_carotids','3Previous Tests','Carotids',3,25,1,100,0,'blank',1,3,'','','',0);
+INSERT INTO `layout_options` VALUES ('HIS','his_ctangio','3Previous Tests','CT Angio',4,25,1,100,0,'blank',1,3,'','','',0);
+INSERT INTO `layout_options` VALUES ('HIS','his_angio','3Previous Tests','Angio',5,25,1,100,0,'blank',1,3,'','','',0);
+INSERT INTO `layout_options` VALUES ('HIS','his_prev_other','3Previous Tests','Other',6,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_cadstemi TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_cadstemi','4Medical Problems','CAD STEMI',1,25,1,100,0,'STEMI',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_nstemi TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_nstemi','4Medical Problems','NSTEMI',2,25,1,100,0,'STEMI',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_pci TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_pci','4Medical Problems','PCI',3,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_cabg TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_cabg','4Medical Problems','CABG',4,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_acs TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_acs','4Medical Problems','Acute Coronary Syndrome',5,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_sangina TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_sangina','4Medical Problems','Stable Angina',6,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_prob_other TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_prob_other','4Medical Problems','Other',7,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_cva TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_cva','4Medical Problems','CVA',8,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_htn TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_htn','4Medical Problems','HTN',9,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_prob_dm TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_prob_dm','4Medical Problems','DM',10,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_dysli_cholesterole TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_dysli_cholesterole','4Medical Problems','Dyslipidaimia-Cholesterole',11,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_dysli_tg TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_dysli_tg','4Medical Problems','Dyslipdaimia-TG',12,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_valvedisease TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_valvedisease','4Medical Problems','Valve Disease',13,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_arrhy_af_par TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_arrhy_af_par','4Medical Problems','Arrhythmias -AF -Paroxysmal',14,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_arrhy_af_chr TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_arrhy_af_chr','4Medical Problems','Arrhythmias -AF -Chronic',15,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_arrhy_af_other TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_arrhy_af_other','4Medical Problems','Arrhythmias -AF -Other',16,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_arrhy_svt TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_arrhy_svt','4Medical Problems','Arrhythmias -SVT',17,25,1,100,0,'blank',1,3,'','','',0);
+
+
+ALTER TABLE history_data ADD his_arrhy_wpw TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_arrhy_wpw','4Medical Problems','Arrhythmias -WPW',18,25,1,100,0,'blank',1,3,'','','',0);
+
+
+ALTER TABLE history_data ADD his_arrhy_bigeminy TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_arrhy_bigeminy','4Medical Problems','Arrhythmias -Bigeminy',19,25,1,100,0,'blank',1,3,'','','',0);
+
+
+ALTER TABLE history_data ADD his_arrhy_trigeminy TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_arrhy_trigeminy','4Medical Problems','Arrhythmias -Trigeminy',20,25,1,100,0,'blank',1,3,'','','',0);
+
+
+ALTER TABLE history_data ADD his_arrhy_pacs TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_arrhy_pacs','4Medical Problems','Arrhythmias -PACs',21,25,1,100,0,'blank',1,3,'','','',0);
+
+
+ALTER TABLE history_data ADD his_arrhy_pvcs TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_arrhy_pvcs','4Medical Problems','Arrhythmias -PVCs',22,25,1,100,0,'blank',1,3,'','','',0);
+
+
+ALTER TABLE history_data ADD his_heartfailure TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_heartfailure','4Medical Problems','Heart Failure',23,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_pulmonaryoedema TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_pulmonaryoedema','4Medical Problems','Pulmonary Oedema',24,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_pericarditis TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_pericarditis','4Medical Problems','Pericarditis',25,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_myocardidis TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_myocardidis','4Medical Problems','Myocarditis',26,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_aorticaneurism TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_aorticaneurism','4Medical Problems','Aortic Aneurism',27,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_cad TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_cad','4Medical Problems','Carotid Artery disease',28,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_cad_plaque TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_cad_plaque','4Medical Problems','Carotid Artery disease -plaque',28,25,1,100,0,'plaque',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_cad_stenosis TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_cad_stenosis','4Medical Problems','Carotid Artery disease -stenosis',29,25,1,100,0,'stenperc',1,3,'','','',0);
+
+
+ALTER TABLE history_data ADD his_imt TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_imt','4Medical Problems','Carotid Artery disease -IMT over 1mm',30,25,1,100,0,'blank',1,3,'','','',0);
+
+
+ALTER TABLE history_data ADD his_chestpain TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_chestpain','4Medical Problems','Chest Pain',31,25,1,100,0,'blank',1,3,'','','',0);
+
+
+ALTER TABLE history_data ADD his_paplitations TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_paplitations','4Medical Problems','Palpitations',32,25,1,100,0,'blank',1,3,'','','',0);
+
+
+ALTER TABLE history_data ADD his_prob_card_other TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_prob_card_other','4Medical Problems','Other Cardiological',33,25,1,100,0,'blank',1,3,'','','',0);
+
+
+
+ALTER TABLE history_data ADD his_copd TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_copd','4Medical Problems','COPD',34,25,1,100,0,'blank',1,3,'','','',0);
+
+
+ALTER TABLE history_data ADD his_kidneydisease TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_kidneydisease','4Medical Problems','Kidney Disease',35,25,1,100,0,'blank',1,3,'','','',0);
+
+ALTER TABLE history_data ADD his_prob_noncard_other TEXT;
+INSERT INTO `layout_options` VALUES ('HIS','his_prob_noncard_other','4Medical Problems','Other Non-Cardiological',36,25,1,100,0,'blank',1,3,'','','',0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
