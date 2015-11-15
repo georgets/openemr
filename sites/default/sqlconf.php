@@ -2,10 +2,10 @@
 //  OpenEMR
 //  MySQL Config
 
-$host	= '192.168.10.14';
+$host	= 'mysql';
 $port	= '3306';
 $login	= 'openemr';
-$pass	= 'pzma';
+$pass	= 'kardiagnosis';
 $dbase	= 'kardiagnosis';
 
 //Added ability to disable

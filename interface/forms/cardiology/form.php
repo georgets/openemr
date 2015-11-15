@@ -1,293 +1,278 @@
 <?php
-include_once("../../globals.php");
-include_once("$srcdir/api.inc");
+include_once ("../../globals.php");
+include_once ("$srcdir/api.inc");
+require_once 'common.php';
+global $rec;
 
-
-/** CHANGE THIS - name of the database table associated with this form **/
+/**
+ * CHANGE THIS - name of the database table associated with this form *
+ */
 $table_name = "formcardiologyencounter";
 
-/** CHANGE THIS name to the name of your form **/
+$rec = R::load ( $table_name, $_GET ["id"] );
+
+/**
+ * CHANGE THIS name to the name of your form *
+ */
 $form_name = "Cardiology Encounter";
 
-/** CHANGE THIS to match the folder you created for this form **/
+/**
+ * CHANGE THIS to match the folder you created for this form *
+ */
 $form_folder = "cardiology";
 
-formHeader("Form: ".$form_name);
+formHeader ( "Form: " . $form_name );
 
-$returnurl = $GLOBALS['concurrent_layout'] ? 'encounter_top.php' : 'patient_encounter.php';
-
-/* load the saved record */
-if (isset ( $_GET["id"] )) {
-	$record = formFetch ( $table_name, $_GET["id"] );
-}
+$returnurl = $GLOBALS ['concurrent_layout'] ? 'encounter_top.php' : 'patient_encounter.php';
 
 ?>
 
-<html><head>
+<html>
+<head>
 <?php html_header_show();?>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 </head>
 
 <body class="body_top">
-<?php function chkbText($label,$id,$lwidth=4,$bwidth=6){
-$s = '
-  <label class="col-lg-'.$lwidth.' control-label text-right" for="'.$id.'">'.$label.'</label>
-  <div class="col-lg-'.$bwidth.'">
+<?php
+function chkbText($label, $id, $lwidth = 3, $bwidth = 9) {
+	global $flds, $rec, $lrb, $mvaov;
+	if ($label == '=') {
+		$label = $flds[$id];
+	}
+	$val = $rec[$id];
+	if (strpos ( $val, "y|" ) === 0) {
+		$checked = "checked";
+	} else {
+		$checked = "";
+	}
+	$detail = htmlspecialchars ( substr ( $val, 2 ) );
+	$s = '
+  <label style="padding-left: 5px; padding-right: 5px" class="col-lg-' . $lwidth . ' control-label text-right" for="' . $id . '">' . $label . '</label>
+  <div class="col-lg-' . $bwidth . '" style="padding-left: 5px; padding-right: 5px">
     <div class="input-group">
       <span class="input-group-addon">     
-          <input type="checkbox">     
+          <input type="checkbox" name="chk_' . $id . '" ' . $checked . '>     
       </span>
-      <input id="'.$id.'" name="cef_'.$id.'" class="form-control" type="text" placeholder="details">
+      <input id="chkdetail_' . $id . '" name="chkdetail_' . $id . '" class="form-control" type="text" value="' . $detail . '">
     </div>
   </div>
 ';
-
-return $s;
-} 
-
-function chkbTextGroup($label,$id,$associativelist,$tlwidth=2,$lwidth=4,$bwidth=6){
-	$s = '<div>
-<label class="col-lg-'.$tlwidth.' control-label text-right" for="'.$id.'">'.$label.'</label>
-<div class="col-lg-'.($lwidth+$bwidth).'">';
-	$lwidth=floor($lwidth*12/($lwidth+$bwidth));
-	$bwidth=12-$lwidth-1;
-	foreach ($associativelist as $lid => $lbl) {
-		$s.=chkbText($lbl,$id.'_'.$lid,$lwidth,$bwidth);
+	
+	return $s;
+}
+function chkbTextGroup($label, $id, $associativelist, $tlwidth = 2, $lwidth = 4, $bwidth = 6) {
+	global $flds, $rec;
+	if ($label == '=') {
+		$label = $flds [$id];
 	}
-$s.="</div></div>";
-return $s;
+	
+	$s = '<div>
+<label class="col-lg-' . $tlwidth . ' control-label text-right" for="' . $id . '">' . $label . '</label>
+<div class="col-lg-' . ($lwidth + $bwidth) . '">';
+	$lwidth = floor ( $lwidth * 12 / ($lwidth + $bwidth) );
+	$bwidth = 12 - $lwidth - 1;
+	foreach ( $associativelist as $lid => $lbl ) {
+		$s .= chkbText ( $lbl, $id . '_' . $lid, $lwidth, $bwidth );
+	}
+	$s .= "</div></div>";
+	return $s;
+}
+function textArea($label, $id, $rows = 3) {
+	global $flds, $rec;
+	if ($label == '=') {
+		$label = $flds [$id];
+	}
+	$val = $rec [$id];
+	$s = '<label class="col-lg-2 control-label" for="' . $id . '">' . $label . ':</label>
+	<div class="col-lg-8">
+	<textarea class="form-control" rows="' . $rows . '" id="' . $id . '" name="' . $id . '">' . $val . '</textarea>
+	</div>';
+	
+	return $s;
 }
 ?>
 
-<?php echo date("F d, Y", time()); ?>
 
-<?php
-require '../../../library/rb.php';
-R::setup('mysql:host=192.168.10.14;dbname=kardiagnosis', 'openemr','pzma'); //mysql
-$rec = R::load ( 'formcardiologyencounter', $_GET ["id"] );
-?>
-<form method=post action="<?php echo $rootdir;?>/forms/<?php echo $form_folder; ?>/save.php?mode=<?php echo $mode?>" name="my_form">
+<form method=post
+		action="<?php echo $rootdir;?>/forms/<?php echo $form_folder; ?>/save.php?mode=<?php echo $mode?>"
+		name="my_form">
 
-<input type=hidden name=id value='<?php echo  (isset($rec)) ? $rec->id : '' ;?>'>
+		<input type=hidden name=id
+			value='<?php echo  (isset($rec)) ? $rec->id : '' ;?>'> <span
+			class="title"><?php xl($form_name, 'e'); ?></span><br>
 
-
-<span class="title"><?php xl($form_name, 'e'); ?></span><br>
-
-<!-- Save/Cancel buttons -->
-<input type="button" class="save" value="<?php xl('Save','e'); ?>"> &nbsp; 
-<input type="button" class="dontsave" value="<?php xl('Don\'t Save','e'); ?>">
-
-<input type="button" class="save" value="<?php xl('Save Changes','e'); ?>"> &nbsp; 
-<input type="button" class="dontsave" value="<?php xl('Don\'t Save Changes','e'); ?>"> &nbsp; 
-<input type="button" class="printform" value="<?php xl('Print','e'); ?>"> &nbsp; 
-<br>
-<br>
-<!-- 
+		<!-- Save/Cancel buttons -->
+		<input type="button" class="save" value="<?php xl('Save','e'); ?>">
+		&nbsp; <input type="button" class="dontsave"
+			value="<?php xl('Don\'t Save','e'); ?>"> <input type="button"
+			class="save" value="<?php xl('Save Changes','e'); ?>"> &nbsp; <input
+			type="button" class="dontsave"
+			value="<?php xl('Don\'t Save Changes','e'); ?>"> &nbsp; <input
+			type="button" class="printform" value="<?php xl('Print','e'); ?>">
+		&nbsp; <br> <br>
+		<!-- 
 name: <input type="text" size="50" name='cef_name' value="<?php echo $rec->name;?>">
 name2: <input type="text" size="50" name='cef_nametwo' value="<?php echo $rec->name;?>">
 
 date: <input type="text" name="date" id="date" value="<?php echo $rec->date;?>">
  -->
-<form class="form-horizontal">
 
+		<form class="form-horizontal">
 
-<div class="container col-lg-12">
-    <ul class="nav nav-tabs">
-        <li class="nav active"><a href="#A" data-toggle="tab">Reason for Visit</a></li>
-        <li class="nav"><a href="#B" data-toggle="tab">Examination</a></li>
-        <li class="nav"><a href="#C" data-toggle="tab">Auscultation</a></li>
-        <li class="nav"><a href="#E" data-toggle="tab">Diagnosis</a></li>
+			<div class="container col-lg-10">
+				<ul class="nav nav-tabs">
+					<li class="nav active"><a href="#A" data-toggle="tab">Reason for
+							Visit</a></li>
+					<li class="nav"><a href="#B" data-toggle="tab">Examination</a></li>
+					<li class="nav"><a href="#C" data-toggle="tab">Auscultation</a></li>
+					<li class="nav"><a href="#E" data-toggle="tab">Diagnosis</a></li>
 
-        </ul>
+				</ul>
 
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div class="tab-pane fade in active" id="A">
-			<div class="row">
-				<div class="col-lg-6">
-					<h4>Πόνος στο στήθος:</h4>
-					<div class="row"><?php echo chkbText("Ηρεμία","pain",2,10); ?></div><br>
-					<div class="row"><?php echo chkbText("Κόπωση","pain",2,10); ?></div><br>
-					<div class="row"><?php echo chkbText("Αντανάκλαση","pain",2,10); ?></div><br>
-					<div class="row"><?php echo chkbText("Διάρκεια","pain",2,10); ?></div><br>
-					<div class="row"><?php echo chkbText("Υποχώρηση","pain",2,10); ?></div><br>
-				</div>
-				<div class="col-lg-6">
-					<h4>Complaints:	</h4>
-					<div class="row"><?php echo chkbText("Πόνος στην πλάτη","pain",2,10); ?></div><br>
-					<div class="row"><?php echo chkbText("Πόνος στο χέρι","pain",2,10); ?></div><br>
-					<div class="row"><?php echo chkbText("Έυκολη κόπωση","pain",2,10); ?></div><br>
-					<div class="row"><?php echo chkbText("Δύσπνοια","pain",2,10); ?></div><br>
-					<div class="row"><?php echo chkbText("Αίσθημα παλμών","pain",2,10); ?></div><br>
-					<div class="row"><?php echo chkbText("Απώλεια αισθήσεων","pain",2,10); ?></div><br>
-					<div class="row"><?php echo chkbText("Προλιποθυμικό επεισόδειο","pain",3,9); ?></div><br>
-					<div class="row"><?php echo chkbText("Οιδήματα άκρων","pain",2,10); ?></div><br>
-					<div class="row"><?php echo chkbText("Βήχας","pain",2,10); ?></div><br>
-					<div class="row"><?php echo chkbText("Άλλο","pain",2,10); ?></div><br>
-				</div>
-			</div>
-		</div>
-        <div class="tab-pane fade" id="B">
-			<div class="row">
-				<div class="col-lg-6">
-					<label class="col-lg-1 control-label" for="'.$id.'">Όψη:</label>
-					<div class="col-lg-10">
-					    <textarea class="form-control" rows="3"></textarea>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<label class="col-lg-2 control-label" for="'.$id.'">Palpation:</label>
-					<div class="col-lg-10">
-					    <textarea class="form-control" rows="3"></textarea>
-					</div>
-				</div>
-			</div><br>
-			<div class="row">
-				<div class="col-lg-6">
-					<label class="col-lg-1 control-label" for="'.$id.'">ECG:</label>
-					<div class="col-lg-10">
-					    <textarea class="form-control" rows="3"></textarea>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<label class="col-lg-2 control-label" for="'.$id.'">ECHO:</label>
-					<div class="col-lg-10">
-					    <textarea class="form-control" rows="3"></textarea>
-					</div>
-				</div>
-			</div><br>
-			<div class="row">
-				<div class="col-lg-6">
-					<label class="col-lg-1 control-label" for="'.$id.'">ETT:</label>
-					<div class="col-lg-10">
-					    <textarea class="form-control" rows="3"></textarea>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<label class="col-lg-2 control-label" for="'.$id.'">Stress Echo:</label>
-					<div class="col-lg-10">
-					    <textarea class="form-control" rows="3"></textarea>
-					</div>
-				</div>
-			</div><br>
-			<div class="row">
-				<div class="col-lg-6">
-					<label class="col-lg-1 control-label" for="'.$id.'">Holter:</label>
-					<div class="col-lg-10">
-					    <textarea class="form-control" rows="3"></textarea>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<label class="col-lg-2 control-label" for="'.$id.'">Carotids:</label>
-					<div class="col-lg-10">
-					    <textarea class="form-control" rows="3"></textarea>
-					</div>
-				</div>
-			</div><br>
-			<div class="row">
-				<div class="col-lg-6">
-					<label class="col-lg-1 control-label" for="'.$id.'">Other:</label>
-					<div class="col-lg-10">
-					    <textarea class="form-control" rows="3"></textarea>
-					</div>
-				</div>
-			</div>
-        </div>
-        <div class="tab-pane fade" id="C">
-        <br>
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="row"><?php echo chkbText("S1 S2 κφ","pain"); ?></div>
-					<div class="row"><?php echo chkbText("Καθαρά Πν. Πεδία:","pain"); ?></div>
-					<div class="row"><?php echo chkbText("Εκπνευστικός Συρριγμός:","pain"); ?></div>
-					<div class="row"><?php echo chkbText("Εισπνευστικός Συρριγμός:","pain"); ?></div>
-					<div class="row"><?php echo chkbText("Παράταση Εκπνοής:","pain"); ?></div>
-					<div class="row"><?php echo chkbText("Μειωμένο ψυθίρισμα:","pain"); ?></div>
-				</div>
-				<div class="col-lg-6">
-
-						<div class="row"><?php $mvaov = array( "mv" => "MV: ", "aov" => "AoV: ",); 
-					      echo chkbTextGroup("Συστολικό φύσημα:","pain",$mvaov,2,2,8); ?></div>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane fade in active" id="A">
 						<br>
-						<div class="row"><?php echo chkbTextGroup("Διαστολικό φύσημα:","pain",$mvaov,2,2,8); ?></div>
+						<div class="row">
+							<div class="col-lg-4">
+								<h4>Πόνος στο στήθος:</h4>
+								<div class="row"><?php echo chkbText("=","atrest"); ?></div>
+								<div class="row"><?php echo chkbText("=","atexcercise"); ?></div>
+								<div class="row"><?php echo chkbText("=","radiation"); ?></div>
+								<div class="row"><?php echo chkbText("=","duration"); ?></div>
+								<div class="row"><?php echo chkbText("=","stops"); ?></div>
+								<h4>Other:</h4>
+								<div class="row"><?php echo chkbText("=","asymptomaticcheckup",4,8); ?></div>
+								<div class="row"><?php echo chkbText("=","healthcertificate"); ?></div>
+								<h4>Follow up for:</h4>
+								<div class="row"><?php echo chkbText("=","followupcad"); ?></div>
+								<div class="row"><?php echo chkbText("=","followuphf"); ?></div>
+								<div class="row"><?php echo chkbText("=","followuparrhythmias"); ?></div>
+								<div class="row"><?php echo chkbText("=","followupother"); ?></div>
+							</div>
+							<div class="col-lg-6">
+								<h4>Complaints:</h4>
+								<div class="row"><?php echo chkbText("=","backpain"); ?></div>
+								<div class="row"><?php echo chkbText("=","armpain"); ?></div>
+								<div class="row"><?php echo chkbText("=","easyfatigue"); ?></div>
+								<div class="row"><?php echo chkbText("=","dyspnea"); ?></div>
+								<div class="row"><?php echo chkbText("=","palpitations"); ?></div>
+								<div class="row"><?php echo chkbText("=","syncope"); ?></div>
+								<div class="row"><?php echo chkbText("=","presyncoptic"); ?></div>
+								<div class="row"><?php echo chkbText("=","oedema"); ?></div>
+								<div class="row"><?php echo chkbText("=","cough"); ?></div>
+								<div class="row"><?php echo chkbText("=","othercomplaint"); ?></div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="B">
 						<br>
-						<div class="row"><?php echo chkbTextGroup("Ολοσυστολικό φύσημα:","pain",$mvaov,2,2,8); ?></div>
-		
-				</div>
+						<div class="row">
+							<div class="col-lg-6"><?php echo textArea("=","look",3); ?></div>
+							<div class="col-lg-6"><?php echo textArea("=","palpation",3); ?></div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6"><?php echo textArea("=","ecg",3); ?></div>
+							<div class="col-lg-6"><?php echo textArea("=","echo",3); ?></div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6"><?php echo textArea("=","ett",3); ?></div>
+							<div class="col-lg-6"><?php echo textArea("=","stressecho",3); ?></div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6"><?php echo textArea("=","holter",3); ?></div>
+							<div class="col-lg-6"><?php echo textArea("=","carotids",3); ?></div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6"><?php echo textArea("=","examinationother",3); ?></div>
+						</div>
 
+					</div>
+					<div class="tab-pane fade" id="C">
+						<br>
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="row"><?php echo chkbText("S1 S2 κφ","s1s2normal"); ?></div>
+								<div class="row"><?php echo chkbText("Καθαρά Πν. Πεδία:","pulmonicfieldsclear"); ?></div>
+								<div class="row"><?php echo chkbText("Εκπνευστικός Συρριγμός:","weezes"); ?></div>
+								<div class="row"><?php echo chkbText("Εισπνευστικός Συρριγμός:","crackles"); ?></div>
+								<div class="row"><?php echo chkbText("Παράταση Εκπνοής:","pleuralrub"); ?></div>
+								<div class="row"><?php echo chkbText("Μειωμένο ψυθίρισμα:","reducedpulmonicsounds"); ?></div>
+							</div>
+							<div class="col-lg-6">
+
+								<div class="row"><?php
+								
+								echo chkbTextGroup ( "Συστολικό φύσημα:", "systolicmurmur", $mvaov, 2, 2, 8 );
+								?></div>
+								<br>
+								<div class="row"><?php echo chkbTextGroup("Διαστολικό φύσημα:","diastolicmurmur",$mvaov,2,2,8); ?></div>
+								<br>
+								<div class="row"><?php echo chkbTextGroup("Ολοσυστολικό φύσημα:","murmur",$mvaov,2,2,8); ?></div>
+
+							</div>
+
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="row"><?php echo chkbTextGroup("Ρεγχάζοντες - Βάσεων:","reghazontesbase",$mvaov,3,2,7); ?></div>
+								<br>
+								<div class="row"><?php echo chkbTextGroup("Ρεγχάζοντες - Μέσα Πν. Πεδία:","reghazontespulm",$mvaov,3,2,7); ?></div>
+								<br>
+								<div class="row"><?php echo chkbText("Ρεγχάζοντες - Διάχυτα:","reghazontesdiahyta",4,7); ?></div>
+							</div>
+							<div class="col-lg-6">
+								<div class="row"><?php echo chkbText("Ήχος τριβής:","ihostrivis",3,8); ?></div>
+								<br>
+								<div class="row"><?php echo chkbTextGroup ( "Τρίζοντες - Βάσεων:", "trizontesbase", $lrb, 2, 2, 8 );?></div>
+								<br>
+								<div class="row"><?php echo chkbTextGroup("Τρίζοντες - Μέσα Πν. Πεδία:","trizontespulm",$lrb,2,2,8); ?></div>
+								<br>
+								<div class="row"><?php echo chkbText("Ρεγχάζοντες - Διάχυτα:","trizontesdiahyta",3,8); ?></div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="tab-pane fade" id="E">
+						<div class="row">
+							<div class="col-lg-6"><?php echo textArea("=","diagnosis",3); ?></div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6"><?php echo textArea("=","changes",3); ?></div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6"><?php echo textArea("=","plan",3); ?></div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6"><?php echo textArea("=","p",3); ?></div>
+						</div>
+					</div>
+
+
+				</div>
 			</div>
-			<br>
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="row"><?php echo chkbTextGroup("Ρεγχάζοντες - Βάσεων:","pain",$mvaov,3,2,7); ?></div>
-					<br>
-					<div class="row"><?php echo chkbTextGroup("Ρεγχάζοντες - Μέσα Πν. Πεδία:","pain",$mvaov,3,2,7); ?></div>
-					<br>
-					<div class="row"><?php echo chkbText("Ρεγχάζοντες - Διάχυτα:","pain",4,7); ?></div>			
-				</div>
-				<div class="col-lg-6">
-					<div class="row"><?php echo chkbText("Ήχος τριβής:","pain",3,8); ?></div>
-					<br>							
-					<div class="row"><?php $lrb = array( "both" => "Άμφω", "left" => "Αριστερά", "right" => "Δεξιά"); 
-				      echo chkbTextGroup("Τρίζοντες - Βάσεων:","pain",$lrb,2,2,8); ?></div>
-					<br>
-					<div class="row"><?php echo chkbTextGroup("Τρίζοντες - Μέσα Πν. Πεδία:","pain",$lrb,2,2,8); ?></div>
-					<br>
-					<div class="row"><?php echo chkbText("Ρεγχάζοντες - Διάχυτα:","pain",3,8); ?></div>							
-				</div>
 
-			</div>
-        </div>
-
-        <div class="tab-pane fade" id="E">
-			<div class="row">
-				<label class="col-lg-1 control-label" for="'.$id.'">Diagnosis:</label>
-				<div class="col-lg-6">
-				    <textarea class="form-control" rows="3"></textarea>
-				</div>
-			</div><br>
-			<div class="row">
-				<label class="col-lg-1 control-label" for="'.$id.'">Changes:</label>
-				<div class="col-lg-6">
-				    <textarea class="form-control" rows="3"></textarea>
-				</div>
-			</div><br>
-			<div class="row">
-				<label class="col-lg-1 control-label" for="'.$id.'">Plan:</label>
-				<div class="col-lg-6">
-				    <textarea class="form-control" rows="3"></textarea>
-				</div>
-			</div><br>
-			<div class="row">
-				<label class="col-lg-1 control-label" for="'.$id.'">P:</label>
-				<div class="col-lg-6">
-				    <textarea class="form-control" rows="3"></textarea>
-				</div>
-			</div>
-        </div>
-
-                
-    </div>
-</div>
-
-
-
-</form>
-
-<br>
-<br>
-<br>
-<!-- Save/Cancel buttons -->
-<input type="button" class="save" value="<?php xl('Save','e'); ?>"> &nbsp; 
-<input type="button" class="dontsave" value="<?php xl('Don\'t Save','e'); ?>"> &nbsp; 
-</form>
+		</form>
+		<br> <br> <br> <br>
+		<!-- Save/Cancel buttons -->
+		<input type="button" class="save" value="<?php xl('Save','e'); ?>">
+		&nbsp; <input type="button" class="dontsave"
+			value="<?php xl('Don\'t Save','e'); ?>"> &nbsp;
+	</form>
 
 </body>
 

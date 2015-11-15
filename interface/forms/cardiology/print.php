@@ -5,21 +5,28 @@
 
 include_once("../../globals.php");
 include_once("$srcdir/api.inc");
+require_once 'common.php';
 
-/** CHANGE THIS - name of the database table associated with this form **/
-$table_name = "form_example";
+global $rec;
 
-/** CHANGE THIS name to the name of your form **/
-$form_name = "My Example Form";
+/**
+ * CHANGE THIS - name of the database table associated with this form *
+ */
+$table_name = "formcardiologyencounter";
 
-/** CHANGE THIS to match the folder you created for this form **/
-$form_folder = "example";
+$rec = R::load ( $table_name, $_GET ["id"] );
 
-formHeader("Form: ".$form_name);
-$returnurl = $GLOBALS['concurrent_layout'] ? 'encounter_top.php' : 'patient_encounter.php';
+/**
+ * CHANGE THIS name to the name of your form *
+ */
+$form_name = "Cardiology Encounter";
 
-/* load the saved record */
-$record = formFetch($table_name, $_GET["id"]);
+/**
+ * CHANGE THIS to match the folder you created for this form *
+ */
+$form_folder = "cardiology";
+
+formHeader ( "Form: " . $form_name );
 
 /* remove the time-of-day from the date fields */
 if ($record['form_date'] != "") {
