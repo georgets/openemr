@@ -62,9 +62,6 @@ if (IS_WINDOWS) {
 }
 // Auto collect the relative html path, i.e. what you would type into the web
 // browser after the server address to get to OpenEMR.
-// if (strpos($webserver_root, 'public_html')>0) {
-// 	$webserver_root='~george/openemr';
-// }
 $web_root = substr($webserver_root, strlen($_SERVER['DOCUMENT_ROOT']));
 //$web_root = "/www/kardiagnosis";
 // Ensure web_root starts with a path separator
