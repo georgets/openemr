@@ -5,9 +5,9 @@
 
 $host	= 'mysql';
 $port	= '3306';
-$login	= 'openemr';
-$pass	= 'pzma';
-$dbase	= 'kardiagnosis';
+$login	= 'xxx';
+$pass	= 'xxx';
+$dbase	= 'xxx';
 
 //Added ability to disable
 //utf8 encoding - bm 05-2009
