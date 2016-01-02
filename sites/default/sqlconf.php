@@ -5,7 +5,7 @@
 $host	= 'mysql';
 $port	= '3306';
 $login	= 'openemr';
-$pass	= 'kardiagnosis';
+$pass	= 'openemr';
 $dbase	= 'kardiagnosis';
 
 //Added ability to disable

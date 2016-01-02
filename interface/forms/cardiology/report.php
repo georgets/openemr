@@ -27,10 +27,10 @@ function cardiology_report($pid, $encounter, $cols, $id) {
 			
 			if (strpos ( $value, "y|" ) === 0) {
 				$tmp=htmlspecialchars ( substr ( $value, 2 ) );
-				$value = "Ναι";
+				$value = "Yes";
 			} elseif (strpos ( $value, "n|" ) === 0) {
 				$tmp=htmlspecialchars ( substr ( $value, 2 ) );
-				$value = "όχι";
+				$value = "No";
 			} 
 			if ($tmp!=""){
 				$value="$value, $tmp";

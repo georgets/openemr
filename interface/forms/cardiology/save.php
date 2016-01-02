@@ -72,7 +72,8 @@ if ($_REQUEST ["mode"] == "new") {
 	// $success = formUpdate($table_name, $_POST, $_GET["id"], $userauthorized);
 	$rec = R::load ( $table_name, $_REQUEST ["id"] );
 	update_model_data_from_post ( $rec );
-	R::store ( $rec );
+	$result = R::store ( $rec );
+	
 }
 
 $_SESSION ["encounter"] = $encounter;
