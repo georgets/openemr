@@ -1,4 +1,4 @@
 <?php
-$mode='new';
+$mode = 'new';
 include 'form.php';
 ?>

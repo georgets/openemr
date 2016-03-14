@@ -1,4 +1,4 @@
 <?php
-$mode='update';
+$mode = 'update';
 include 'form.php';
 ?>

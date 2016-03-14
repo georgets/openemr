@@ -39,7 +39,7 @@ function update_model_data_from_post($rec) {
 					$val = "n|$val";
 				}
 				$rec [$fieldname] = $val;
-			} elseif ( ! (strrpos( $field, "chk_" )===0) ){
+			} elseif (! (strrpos ( $field, "chk_" ) === 0)) {
 				$rec [$field] = $val;
 			}
 		}
@@ -73,7 +73,6 @@ if ($_REQUEST ["mode"] == "new") {
 	$rec = R::load ( $table_name, $_REQUEST ["id"] );
 	update_model_data_from_post ( $rec );
 	$result = R::store ( $rec );
-	
 }
 
 $_SESSION ["encounter"] = $encounter;

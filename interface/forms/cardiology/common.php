@@ -1,6 +1,6 @@
 <?php
 require '../../../library/rb.php';
-R::setup ( "mysql:host=$host;dbname=$dbase", $login, $pass ); 
+R::setup ( "mysql:host=$host;dbname=$dbase", $login, $pass );
 $flds_gr = array (
 		"atrest" => "Ηρεμία",
 		"atexcercise" => "Κόπωση",
@@ -9,6 +9,7 @@ $flds_gr = array (
 		"stops" => "Υποχώρηση",
 		"asymptomaticcheckup" => "Asymptomatic for checkup",
 		"healthcertificate" => "Health certificate",
+		"preoperativecheck" => "Preoperative Check",
 		"followupcad" => "CAD",
 		"followuphf" => "HF",
 		"followuparrhythmias" => "Arrhythmias",
@@ -55,7 +56,7 @@ $flds_gr = array (
 		"reghazontespulm_mv" => "Ρεγχάζοντες - Μέσα Πν. Πεδία - mv",
 		"reghazontesbase_aov" => "Ρεγχάζοντες - Βάσεων - AOV",
 		"reghazontespulm_aov" => "Ρεγχάζοντες - Μέσα Πν. Πεδία - AOV",
-
+		
 		"reghazontesdiahyta" => "Ρεγχάζοντες - Διάχυτα",
 		
 		"trizontesbase" => "Τρίζοντες - Βάσεων",
@@ -86,6 +87,7 @@ $flds_en = array (
 		"releaved" => "Releaved",
 		"asymptomaticcheckup" => "Asymptomatic for checkup",
 		"healthcertificate" => "Health certificate",
+		"preoperativecheck" => "Preoperative Check",
 		"followupcad" => "CAD",
 		"followuphf" => "HF",
 		"followuparrhythmias" => "Arrhythmias",
@@ -118,7 +120,7 @@ $flds_en = array (
 		"crackles" => "Crackles",
 		"frictionrub" => "Friction Rub",
 		"reducedpulmonicsounds" => "Reduced Pulmonic Sounds",
-
+		
 		"systolicmurmur" => "Systolic Murmur",
 		"systolicmurmur_mv" => "Systolic MurmurMV",
 		"systolicmurmur_aov" => "Systolic Murmur AOV",
@@ -134,7 +136,7 @@ $flds_en = array (
 		"diagnosis" => "Diagnosis",
 		"changes" => "Changes",
 		"plan" => "Plan",
-		"p" => "P"
+		"p" => "P" 
 );
 
 $flds = $flds_en;
@@ -148,6 +150,7 @@ $fld_groups = array (
 		
 		"asymptomaticcheckup" => "Reason for Visit - Other",
 		"healthcertificate" => "Reason for Visit - Other",
+		"preoperativecheck" => "Reason for Visit - Other",
 		
 		"followupcad" => "Reason for Visit - Follow-up",
 		"followuphf" => "Reason for Visit - Follow-up",

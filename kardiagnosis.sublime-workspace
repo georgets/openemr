@@ -1,0 +1,551 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"group",
+				"groupname"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "interface/forms/cardiology/report.php",
+			"settings":
+			{
+				"buffer_size": 1921,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "interface/forms/cardiology/form.php",
+			"settings":
+			{
+				"buffer_size": 9649,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "kardiagnosis.sublime-project",
+			"settings":
+			{
+				"buffer_size": 140,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "$_COOKIE = array[2]\n	$_COOKIE['OpenEMR'] = (string) 6oa4r5ohc2rhrqo85qgp3rcma1\n	$_COOKIE['XDEBUG_SESSION'] = (string) sublime.xdebug\n$_ENV = array[0]\n$_FILES = array[0]\n$_GET = array[0]\n$_POST = array[0]\n$_REQUEST = array[0]\n$_SERVER = array[28]\n	$_SERVER['HTTP_HOST'] = (string) 172.17.0.10\n	$_SERVER['HTTP_CONNECTION'] = (string) keep-alive\n	$_SERVER['HTTP_ACCEPT'] = (string) text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8\n	$_SERVER['HTTP_UPGRADE_INSECURE_REQUESTS'] = (string) 1\n	$_SERVER['HTTP_USER_AGENT'] = (string) Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36\n	$_SERVER['HTTP_REFERER'] = (string) http://172.17.0.10/interface/login/login_frame.php?site=default\n	$_SERVER['HTTP_ACCEPT_ENCODING'] = (string) gzip, deflate, sdch\n	$_SERVER['HTTP_ACCEPT_LANGUAGE'] = (string) en-US,en;q=0.8,el;q=0.6\n	$_SERVER['HTTP_COOKIE'] = (string) OpenEMR=6oa4r5ohc2rhrqo85qgp3rcma1; XDEBUG_SESSION=sublime.xdebug\n	$_SERVER['PATH'] = (string) /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n	$_SERVER['SERVER_SIGNATURE'] = (string) <address>Apache/2.2.22 (Ubuntu) Server at 172.17.0.10 Port 80</address> \n	$_SERVER['SERVER_SOFTWARE'] = (string) Apache/2.2.22 (Ubuntu)\n	$_SERVER['SERVER_NAME'] = (string) 172.17.0.10\n	$_SERVER['SERVER_ADDR'] = (string) 172.17.0.10\n	$_SERVER['SERVER_PORT'] = (string) 80\n	$_SERVER['REMOTE_ADDR'] = (string) 172.17.0.1\n	$_SERVER['DOCUMENT_ROOT'] = (string) /var/www\n	$_SERVER['SERVER_ADMIN'] = (string) webmaster@localhost\n	$_SERVER['SCRIPT_FILENAME'] = (string) /var/www/interface/login/filler.php\n	$_SERVER['REMOTE_PORT'] = (string) 47324\n	$_SERVER['GATEWAY_INTERFACE'] = (string) CGI/1.1\n	$_SERVER['SERVER_PROTOCOL'] = (string) HTTP/1.1\n	$_SERVER['REQUEST_METHOD'] = (string) GET\n	$_SERVER['QUERY_STRING'] = <string>\n	$_SERVER['REQUEST_URI'] = (string) /interface/login/filler.php\n	$_SERVER['SCRIPT_NAME'] = (string) /interface/login/filler.php\n	$_SERVER['PHP_SELF'] = (string) /interface/login/filler.php\n	$_SERVER['REQUEST_TIME'] = (int) 1457965830\n$_SESSION = array[19]\n	$_SESSION['site_id'] = (string) default\n	$_SESSION['language_choice'] = (string) 1\n	$_SESSION['authUser'] = (string) admin\n	$_SESSION['authPass'] = (string) $2a$05$Gmi7xJbdCL7f7x3LcG1Un.lqp43xdU8ERhWRtPLPft8JwSW3mbCgy\n	$_SESSION['authGroup'] = (string) Default\n	$_SESSION['authUserID'] = (string) 1\n	$_SESSION['authProvider'] = (string) Default\n	$_SESSION['authId'] = (string) 1\n	$_SESSION['cal_ui'] = (string) 3\n	$_SESSION['userauthorized'] = (string) 1\n	$_SESSION['last_update'] = (int) 1457965541\n	$_SESSION['encounter'] = <string>\n	$_SESSION['pc_username'] = (string) admin\n	$_SESSION['pc_framewidth'] = (string) 1461\n	$_SESSION['pc_facility'] = (int) 0\n	$_SESSION['viewtype'] = (string) day\n	$_SESSION['PNSVrand'] = (int) 1943139251\n	$_SESSION['PNSVlang'] = (string) eng\n	$_SESSION['lastcaldate'] = (string) 2016-03-14\n$GLOBALS = array[51]\n	$GLOBALS['GLOBALS'] = <array>\n	$GLOBALS['_POST'] = array[0]\n	$GLOBALS['_GET'] = array[0]\n	$GLOBALS['_COOKIE'] = array[2]\n		...\n	$GLOBALS['_FILES'] = array[0]\n	$GLOBALS['_ENV'] = array[0]\n	$GLOBALS['_REQUEST'] = array[0]\n	$GLOBALS['_SERVER'] = array[28]\n		...\n	$GLOBALS['ignoreAuth'] = (bool) 1\n	$GLOBALS['fake_register_globals'] = (bool) 1\n	$GLOBALS['webserver_root'] = (string) /var/www\n	$GLOBALS['web_root'] = (bool) 0\n	$GLOBALS['OE_SITES_BASE'] = (string) /var/www/sites\n	$GLOBALS['_SESSION'] = array[19]\n		...\n	$GLOBALS['OE_SITE_DIR'] = (string) /var/www/sites/default\n	$GLOBALS['oer_config'] = array[6]\n		...\n	$GLOBALS['host'] = (string) mysql\n	$GLOBALS['port'] = (string) 3306\n	$GLOBALS['login'] = (string) openemr\n	$GLOBALS['pass'] = (string) openemr\n	$GLOBALS['dbase'] = (string) kardiagnosis\n	$GLOBALS['disable_utf8_flag'] = (bool) 0\n	$GLOBALS['sqlconf'] = array[5]\n		...\n	$GLOBALS['config'] = (int) 1\n	$GLOBALS['HTML_CHARSET'] = (string) UTF-8\n	$GLOBALS['rootdir'] = (string) /interface\n	$GLOBALS['srcdir'] = (string) /var/www/library\n	$GLOBALS['fileroot'] = (string) /var/www\n	$GLOBALS['include_root'] = (string) /var/www/interface\n	$GLOBALS['webroot'] = (bool) 0\n	$GLOBALS['template_dir'] = (string) /var/www/templates/\n	$GLOBALS['incdir'] = (string) /var/www/interface\n	...\n$ADODB_LASTDB = <string>\n$class = (string) mysql_log\n$db = (string) mysql_log\n$dbType = (string) mysql_log\n$file = (string) /var/www/library/adodb/drivers/adodb-mysql_log.inc.php\n",
+			"settings":
+			{
+				"buffer_size": 4412,
+				"line_ending": "Unix",
+				"name": "Xdebug Context",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix",
+				"name": "Xdebug Watch",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "[Warning] include_once(): Failed opening '/var/www/library/adodb/drivers/adodb-mysql_log.inc.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear')\n[0] file:///var/www/library/adodb/adodb.inc.php.ADOLoadCode:4116\n[1] file:///var/www/library/adodb/adodb.inc.php.ADONewConnection:4227\n[2] file:///var/www/library/adodb/adodb.inc.php.NewADOConnection:4131\n[3] file:///var/www/library/sql.inc.include_once:135\n[4] file:///var/www/library/translation.inc.php.include_once:2\n[5] file:///var/www/interface/globals.php.include_once:166\n[6] file:///var/www/interface/login/filler.php.{main}:3\n",
+			"settings":
+			{
+				"buffer_size": 598,
+				"line_ending": "Unix",
+				"name": "Xdebug Stack",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "=> /home/george/public_html/kardiagnosis-devel/interface/forms/cardiology/form.php\n	|+| 10\n	|+| 254\n=> /home/george/public_html/kardiagnosis-devel/interface/forms/cardiology/report.php\n	|+| 20\n",
+			"settings":
+			{
+				"buffer_size": 193,
+				"line_ending": "Unix",
+				"name": "Xdebug Breakpoint",
+				"read_only": true,
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 96.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/george/public_html/kardiagnosis-devel",
+		"/home/george/public_html/kardiagnosis-devel/interface",
+		"/home/george/public_html/kardiagnosis-devel/interface/forms",
+		"/home/george/public_html/kardiagnosis-devel/interface/forms/cardiology"
+	],
+	"file_history":
+	[
+		"/home/george/.config/sublime-text-3/Packages/Xdebug Client/Xdebug.sublime-settings",
+		"/home/george/.config/sublime-text-3/Packages/User/Xdebug.sublime-settings",
+		"/home/george/public_html/kardiagnosis-devel/interface/forms/cardiology/form.php",
+		"/home/george/public_html/kardiagnosis-devel/interface/forms/cardiology/cardiology.js",
+		"/home/george/public_html/kardiagnosis-devel/kardiagnosis.sublime-project",
+		"/home/george/public_html/kardiagnosis-devel/interface/forms/cardiology/common.php",
+		"/home/george/public_html/kardiagnosis-devel/interface/forms/cardiology/new.php",
+		"/home/george/public_html/kardiagnosis-devel/interface/forms/cardiology/print.php",
+		"/home/george/public_html/kardiagnosis-devel/interface/forms/cardiology/readme.txt",
+		"/home/george/public_html/kardiagnosis-devel/contrib/forms/cardiology_set/Forms_Cardiology/new.php"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/home/george/public_html/kardiagnosis-devel"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"asymptomaticfor",
+			"asymptomatic",
+			"chest pain",
+			"chestpain",
+			"chest"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "interface/forms/cardiology/report.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1921,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1168,
+								1168
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 357.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "interface/forms/cardiology/form.php",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 9649,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								198,
+								198
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 204.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "kardiagnosis.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 140,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								35,
+								35
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4412,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2083,
+								2083
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 5,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 598,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								598,
+								598
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 193,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								193,
+								193
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				2,
+				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			],
+			[
+				1,
+				1,
+				2,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.7,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.xdebug":
+	{
+		"height": 112.0
+	},
+	"pinned_build_system": "",
+	"project": "kardiagnosis.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"xdebug":
+		{
+			"hide_conflict": false,
+			"restore_index":
+			{
+				"18":
+				{
+					"group": 0,
+					"index": 0
+				},
+				"19":
+				{
+					"group": 0,
+					"index": 1
+				},
+				"27":
+				{
+					"group": 0,
+					"index": 2
+				}
+			},
+			"restore_layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						2,
+						1
+					],
+					[
+						0,
+						1,
+						1,
+						2
+					],
+					[
+						1,
+						1,
+						2,
+						2
+					]
+				],
+				"cols":
+				[
+					0.0,
+					0.5,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					0.569651741294,
+					1.0
+				]
+			}
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 257.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+        "xdebug": {
+             "url": "http://172.17.0.10/",
+        }
+    }
+}

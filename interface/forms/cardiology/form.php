@@ -30,7 +30,7 @@ $returnurl = $GLOBALS ['concurrent_layout'] ? 'encounter_top.php' : 'patient_enc
 <html>
 <head>
 <?php html_header_show();?>
-  <meta charset="utf-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
@@ -41,6 +41,9 @@ $returnurl = $GLOBALS ['concurrent_layout'] ? 'encounter_top.php' : 'patient_enc
 <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
+<script src="../../forms/cardiology/cardiology.js"></script>
 
 </head>
 
@@ -111,17 +114,12 @@ function textArea($label, $id, $rows = 3, $lwidth = 4, $bwidth = 6) {
 
 		<input type=hidden name=id
 			value='<?php echo  (isset($rec)) ? $rec->id : '' ;?>'> <span
-			class="title"><?php xl($form_name, 'e'); ?></span><br>
+			class="title"><?php xl($form_name, 'e'); ?></span>&nbsp;
 
 		<!-- Save/Cancel buttons -->
 		<input type="button" class="save" value="<?php xl('Save','e'); ?>">
 		&nbsp; <input type="button" class="dontsave"
-			value="<?php xl('Don\'t Save','e'); ?>"> <input type="button"
-			class="save" value="<?php xl('Save Changes','e'); ?>"> &nbsp; <input
-			type="button" class="dontsave"
-			value="<?php xl('Don\'t Save Changes','e'); ?>"> &nbsp; <input
-			type="button" class="printform" value="<?php xl('Print','e'); ?>">
-		&nbsp; <br> <br>
+			value="<?php xl('Don\'t Save','e'); ?>"> <br>
 
 		<div class="container col-lg-12">
 			<ul class="nav nav-tabs">
@@ -152,6 +150,7 @@ function textArea($label, $id, $rows = 3, $lwidth = 4, $bwidth = 6) {
 							<h4>Other:</h4>
 							<div class="row"><?php echo chkbText("=","asymptomaticcheckup",4,8); ?></div>
 							<div class="row"><?php echo chkbText("=","healthcertificate"); ?></div>
+							<div class="row"><?php echo chkbText("=","preoperativecheck"); ?></div>
 						</div>
 						<div class="col-lg-6">
 							<h4>Complaints:</h4>
@@ -191,7 +190,7 @@ function textArea($label, $id, $rows = 3, $lwidth = 4, $bwidth = 6) {
 							<div class="row"><?php echo chkbText("=","crackles"); ?></div>
 							<div class="row"><?php echo chkbText("=","reducedpulmonicsounds"); ?></div>
 							<hr />
-
+							<h4>Palpation</h4>
 							<div class="row"><?php echo textArea("=","palpation",4,3,9); ?></div>
 							<br />
 						</div>
@@ -205,15 +204,16 @@ function textArea($label, $id, $rows = 3, $lwidth = 4, $bwidth = 6) {
 						<div class="col-lg-6"><?php echo textArea("=","echo",3); ?></div>
 					</div>
 					<div class="row">
-						<div class="col-lg-6"><?php echo textArea("=","ett",3); ?></div>
 						<div class="col-lg-6"><?php echo textArea("=","stresstreadmill",3); ?></div>
-					</div>
-					<div class="row">
 						<div class="col-lg-6"><?php echo textArea("=","stressecho",3); ?></div>
-						<div class="col-lg-6"><?php echo textArea("=","carotids",3); ?></div>
+
 					</div>
 					<div class="row">
+						<div class="col-lg-6"><?php echo textArea("=","carotids",3); ?></div>
 						<div class="col-lg-6"><?php echo textArea("=","holter",3); ?></div>
+
+					</div>
+					<div class="row">
 						<div class="col-lg-6"><?php echo textArea("=","bpmonitor",3); ?></div>
 					</div>
 					<div class="row">
